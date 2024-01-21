@@ -1,0 +1,27 @@
+<div class="navbar-nav ms-auto">
+  <form class="d-flex" role="search" action="/listing/search">
+    <select
+      class="form-select selectopt"
+      name="select"
+      aria-label="Default select example"
+      required
+    >
+      <option value="title" selected>Titile</option>
+      <option value="price">Price</option>
+      <option value="location">Location</option>
+      <option value="country">Country</option>
+      <option value="category">Category</option>
+    </select>
+    <input
+      style="width: 190px; margin-right: 10px"
+      class="form-control search"
+      placeholder="search Destination"
+      name="search"
+      required
+    />
+
+    <button class="btn btn-danger" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+</div>
