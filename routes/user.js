@@ -4,6 +4,7 @@ const passport = require("passport");
 const { saveredirectUrl } = require("../middleware.js");
 const userController = require("../controller/user.js");
 
+route.route("/varification").get(userController.varification);
 route
   .route("/signUp")
   .get(userController.signUpForm)
@@ -20,6 +21,6 @@ route
     }),
     userController.loginUser
   );
-
+route.post("/reserve", userController.reserve);
 route.get("/logout", userController.logoutUser);
 module.exports = route;

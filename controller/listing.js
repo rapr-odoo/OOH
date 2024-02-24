@@ -47,6 +47,14 @@ module.exports.editListing = async (req, res, next) => {
   res.render("listing.ejs", { result });
 };
 
+module.exports.reserve = async (req, res) => {
+  let { id } = req.params;
+  let result = await listing.findById(id).populate("owner");
+  let user = res.locals.currUser.username;
+  let email = res.locals.currUser.email;
+  res.render("success.ejs", { user, email });
+};
+
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
   console.log(id);
@@ -85,10 +93,6 @@ module.exports.search = async (req, res) => {
   let { search, select } = req.query;
   console.log(search);
   console.log(select);
-  if (select == "title") {
-    let result = await listing.find({ title: search });
-    res.render("search.ejs", { result, search });
-  }
   if (select == "price") {
     let result = await listing.find({ price: search });
     res.render("search.ejs", { result, search });
@@ -99,10 +103,6 @@ module.exports.search = async (req, res) => {
   }
   if (select == "country") {
     let result = await listing.find({ country: search });
-    res.render("search.ejs", { result, search });
-  }
-  if (select == "category") {
-    let result = await listing.find({ category: search });
     res.render("search.ejs", { result, search });
   }
 };

@@ -25,8 +25,7 @@
         <i><p class="card-text">Owned by <%= result.owner.username %></p></i>
         <p class="card-text"><b>Description :</b> <%= result.description %></p>
         <p class="card-text">
-          <b>Price : </b>&#x20B9;<%= result.price.toLocaleString("en-IN")
-          %>/night
+          <b>Price : </b>&#x20B9;<%= result.price.toLocaleString("en-IN") %>/day
         </p>
         <p class="card-text"><b>Location : </b><%= result.location %></p>
         <p class="card-text"><b>Country : </b><%= result.country %></p>
@@ -45,7 +44,11 @@
       </form>
     </div>
     <hr />
-    <% } %> <% if(currUser) { %>
+    <% } %>
+    <form action="/listing/<%= result.id %>/reserve" method="post">
+      <button type="submit" class="btn btn-secondary mb-3">RESERVE NOW</button>
+    </form>
+    <% if(currUser) { %>
     <form
       action="/listing/<%= result.id %>/review"
       method="post"
@@ -110,12 +113,21 @@
         href="https://www.google.com/maps/place/<%= result.location %>"
         target="_blank"
       >
-        <img
-          class="w-100"
-          style="height: 270px"
-          src="https://thumbs.dreamstime.com/b/street-map-21043803.jpg"
-          alt="#"
-        />
+        <iframe
+          width="600"
+          height="400"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          id="gmap_canvas"
+          src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=<%= result.location %>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        ></iframe>
+        <a href="https://www.versicherungen.at/">Versicherungen</a>
+        <script
+          type="text/javascript"
+          src="https://embedmaps.com/google-maps-authorization/script.js?id=be4d0820d653693ae91b07f4994604f9c31f8710"
+        ></script>
       </a>
     </div>
   </div>

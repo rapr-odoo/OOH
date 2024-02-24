@@ -36,6 +36,8 @@ route.get(
   wrapAsync(listingController.findListing)
 );
 
+route.post("/:id/reserve", isloggedIn, listingController.reserve);
+
 route
   .route("/:id")
   .get(wrapAsync(listingController.editListing))
