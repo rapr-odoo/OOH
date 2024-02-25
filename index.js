@@ -14,7 +14,6 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const passportLocal = require("passport-local");
-// const passMongoose = require("passport-local-mongoose");
 const ExpressError = require("./utils/ExpressError.js");
 const userSchema = require("./model/user.js");
 
