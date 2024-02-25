@@ -2,17 +2,6 @@ const mongoose = require("mongoose");
 const manyData = require("../init/data.js");
 const comment = require("./comment.js");
 const { string } = require("joi");
-// main()
-//   .then(() => {
-//     console.log("success");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// async function main() {
-//   await mongoose.connect(dburl);
-// }
 
 const listingSchema = new mongoose.Schema({
   title: {
@@ -86,14 +75,5 @@ listingSchema.post("findOneAndDelete", async (listing) => {
 });
 
 const listing = new mongoose.model("listing", listingSchema);
-
-// listing
-//   .insertMany(manyData.data)
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
 module.exports = listing;

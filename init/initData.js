@@ -2,18 +2,6 @@ const mongoose = require("mongoose");
 const Listing = require("../model/listing.js");
 const dataMany = require("./data.js");
 
-// main()
-//   .then(() => {
-//     console.log("success");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// async function main() {
-//   await mongoose.connect(dburl);
-// }
-
 const initData = async () => {
   dataMany.data = dataMany.data.map((obj) => ({
     ...obj,
@@ -23,4 +11,3 @@ const initData = async () => {
   console.log("seccess");
 };
 initData();
-//57769

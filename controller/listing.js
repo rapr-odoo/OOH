@@ -9,7 +9,6 @@ module.exports.saveListing = async (req, res, next) => {
   let filename = req.file.filename;
 
   let newData = new listing(req.body.listing);
-  console.log(req.body);
   newData.owner = req.user._id;
   newData.image = { url, filename };
   await newData.save();
@@ -57,7 +56,6 @@ module.exports.reserve = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
-  console.log(id);
   let result = await listing.findByIdAndUpdate(id, { ...req.body.listing });
   if (typeof req.file != "undefined") {
     let url = req.file.path;
@@ -71,8 +69,6 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.deleteListing = async (req, res) => {
   let { id } = req.params;
-  console.log(id);
-  console.log(id);
   let result = listing
     .findByIdAndDelete(id)
     .then((res) => {
@@ -91,8 +87,6 @@ module.exports.category = async (req, res) => {
 };
 module.exports.search = async (req, res) => {
   let { search, select } = req.query;
-  console.log(search);
-  console.log(select);
   if (select == "price") {
     let result = await listing.find({ price: search });
     res.render("search.ejs", { result, search });

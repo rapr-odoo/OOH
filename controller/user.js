@@ -18,7 +18,6 @@ module.exports.signUpUser = async (req, res) => {
     let { email, username, password } = req.body;
     const newUser = new useSchema({ email, username });
     const registerUser = await useSchema.register(newUser, password);
-    console.log(newUser);
     req.login(registerUser, (err) => {
       if (err) {
         return next();
@@ -61,41 +60,38 @@ module.exports.reserve = async (req, res) => {
   var endDateObj = new Date(checkOut);
   var timeDifference = startDateObj - endDateObj;
   var daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  console.log(daysDifference);
-  console.log(id);
   let result = await listing.findById(id);
-  console.log(result.price * daysDifference);
 
-  // try {
-  //   var transporter = nodemailer.createTransport({
-  //     service: "gmail",
-  //     auth: {
-  //       user: process.env.MAIL,
-  //       pass: process.env.PASS,
-  //     },
-  //   });
-  //   var mailOptions = {
-  //     from: process.env.MAIL,
-  //     to: email,
-  //     subject: `From WanderLust`,
-  //     html: `<center>Thank you ${user} for reserve home!<br /><br />Your reservation was successfully &#127881; .<br /><br /><b>Date from : ${checkIn} TO ${checkOut}</b><br /><br /> suggestion : ${suggestion}<br /><br /><b>Property Details :</b><br /><br /> Property Name : ${
-  //       result.title
-  //     }<br /><br /> Location : ${result.location}<br /><br /><b>Total Price : ${
-  //       result.price * daysDifference
-  //     }</b><br /><br/>&#128077; Thank you for connect us!</center>`,
-  //   };
+  try {
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.MAIL,
+        pass: process.env.PASS,
+      },
+    });
+    var mailOptions = {
+      from: process.env.MAIL,
+      to: email,
+      subject: `From WanderLust`,
+      html: `<center>Thank you ${user} for reserve home!<br /><br />Your reservation was successfully &#127881; .<br /><br /><b>Date from : ${checkIn} TO ${checkOut}</b><br /><br /> suggestion : ${suggestion}<br /><br /><b>Property Details :</b><br /><br /> Property Name : ${
+        result.title
+      }<br /><br /> Location : ${result.location}<br /><br /><b>Total Price : ${
+        result.price * daysDifference
+      }</b><br /><br/>&#128077; Thank you for connect us!</center>`,
+    };
 
-  //   transporter.sendMail(mailOptions, function (error, info) {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       console.log("Email sent: " + info.response);
-  //     }
-  //   });
-  // } catch (error) {
-  //   req.flash("error", error.message);
-  //   res.redirect("/signUp");
-  // }
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+  } catch (error) {
+    req.flash("error", error.message);
+    res.redirect("/signUp");
+  }
 
   res.render("thankyou.ejs", {
     user,
