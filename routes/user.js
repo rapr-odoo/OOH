@@ -10,6 +10,7 @@ route
   .get(userController.signUpForm)
   .post(userController.signUpUser);
 
+route.post("/reserve", userController.reserve);
 route
   .route("/login")
   .get(userController.loginForm)
@@ -21,6 +22,5 @@ route
     }),
     userController.loginUser
   );
-route.post("/reserve", userController.reserve);
 route.get("/logout", userController.logoutUser);
 module.exports = route;

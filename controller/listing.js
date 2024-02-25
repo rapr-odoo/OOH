@@ -52,7 +52,7 @@ module.exports.reserve = async (req, res) => {
   let result = await listing.findById(id).populate("owner");
   let user = res.locals.currUser.username;
   let email = res.locals.currUser.email;
-  res.render("success.ejs", { user, email });
+  res.render("success.ejs", { user, email, id });
 };
 
 module.exports.updateListing = async (req, res) => {
