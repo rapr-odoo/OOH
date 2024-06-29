@@ -129,3 +129,11 @@ module.exports.logoutUser = (req, res, next) => {
     res.redirect("/listing");
   });
 };
+module.exports.profile = async (req, res, next) => {
+  if (!req.user) {
+    req.flash("error", "You must be logged in to view your profile.");
+    res.redirect("/login");
+  } else {
+    res.render("user/profile.ejs", { user: req.user });
+  }
+};

@@ -87,6 +87,10 @@ app.use("/listing", listing1);
 app.use("/listing/:id", review1);
 app.use("/", user1);
 
+app.get("/", (req, res) => {
+  const currUser = req.user; // assuming you have a req.user object
+  res.render("boilerplate.ejs", { currUser });
+});
 //common route
 app.get("*", (req, res, next) => {
   // next(new ExpressError(404, "Page not found!"));

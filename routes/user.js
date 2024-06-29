@@ -23,4 +23,5 @@ route
     userController.loginUser
   );
 route.get("/logout", userController.logoutUser);
+route.get("/profile",userController.profile);
 module.exports = route;

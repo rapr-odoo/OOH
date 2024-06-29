@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand logo" href="/listing"
       ><img
-        src="https://png.pngtree.com/png-vector/20190323/ourmid/pngtree-beach-logo-design-vector-png-image_874307.jpg"
+        src="https://w7.pngwing.com/pngs/754/9/png-transparent-out-of-home-advertising-logo-outdoor-advertising-association-of-america-dohler-others-food-text-trademark.png"
         alt="#"
     /></a>
     <button
@@ -35,7 +35,7 @@
           <input
             style="width: 190px; margin-right: 10px"
             class="form-control search"
-            placeholder="search Destination"
+            placeholder="search location"
             name="search"
             required
           />
@@ -45,12 +45,13 @@
         </form>
       </div>
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listing/new">Add your home</a>
+        <a class="nav-link" href="/listing/new">Add your space</a>
         <% if(!currUser){ %>
         <a href="/signUp" class="nav-link">SignUp</a>
         <a href="/login" class="nav-link">LogIn</a>
         <% } %> <% if(currUser) { %>
         <a href="/logout" class="nav-link">LogOut</a>
+        <a href="/profile" class="nav-link"><i class="fa-solid fa-user"></i></a>
         <% } %>
       </div>
     </div>
